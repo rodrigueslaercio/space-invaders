@@ -7,4 +7,6 @@ using namespace sf;
 
 Sprite createBackground(Texture *texture);
 
+Sprite createPlayer(Texture* texture);
+
 #endif

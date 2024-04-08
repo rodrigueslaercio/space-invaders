@@ -11,8 +11,11 @@ int main()
     RenderWindow window(vm, "Space Invaders", Style::Fullscreen);
 
     // Textures for the game
-    Texture textureBackground;
+    Texture textureBackground, texturePlayer;
     textureBackground.loadFromFile("graphics/background.jpg");
+    texturePlayer.loadFromFile("graphics/ship.png");
+
+    Sprite player = createPlayer(&texturePlayer);
 
 
     while (window.isOpen())
@@ -25,7 +28,10 @@ int main()
         
         // Window related functions
         window.clear();
+
+        // Draw in the screen
         window.draw(createBackground(&textureBackground));
+        window.draw(player);
 
         window.display();
     }

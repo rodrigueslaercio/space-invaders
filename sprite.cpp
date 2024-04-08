@@ -10,3 +10,12 @@ Sprite createBackground(Texture* texture)
 
     return spriteBackground;
 }
+
+Sprite createPlayer(Texture* texture)
+{
+    Sprite spritePlayer;
+    spritePlayer.setTexture(*texture);
+    spritePlayer.setPosition(1920 / 2, 1000);
+
+    return spritePlayer;
+}
