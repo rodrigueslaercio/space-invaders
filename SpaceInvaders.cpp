@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "sprite.h"
+#include "hud.h"
 
 using namespace sf;
 
@@ -10,14 +11,27 @@ int main()
     VideoMode vm(1920, 1080);
     RenderWindow window(vm, "Space Invaders", Style::Fullscreen);
 
-    // Textures for the game
-    Texture textureBackground, texturePlayer;
+    // Textures for the background
+    Texture textureBackground;
     textureBackground.loadFromFile("graphics/background.jpg");
-    texturePlayer.loadFromFile("graphics/ship.png");
 
+    // Texture and sprite for the player
+    Texture texturePlayer;
+    texturePlayer.loadFromFile("graphics/ship.png");
     Sprite player = createPlayer(&texturePlayer);
 
+    // Boolean to check if the game is paused
+    bool paused = true;
 
+    // Clock to count the frames
+    Clock clock;
+
+    Font font; 
+    font.loadFromFile("fonts/airstrike.ttf");
+
+    // Call the function to create the message
+    Text message = startMessage(&font);
+        
     while (window.isOpen())
     {
         // Handle player input
@@ -25,13 +39,27 @@ int main()
         {
             window.close();
         }
+
+        if (Keyboard::isKeyPressed(Keyboard::Enter))
+        {
+            paused = false;
+        }
+
+
+        // * Update the scenes of the game *
+        if (!paused)
+        {
+            // Delta time timing each frame
+            Time dt = clock.restart();
+        }
         
-        // Window related functions
+        // Clear each frame 
         window.clear();
 
-        // Draw in the screen
+        //* Draw in the screen *
         window.draw(createBackground(&textureBackground));
         window.draw(player);
+        if (paused) window.draw(message);
 
         window.display();
     }
