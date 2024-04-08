@@ -24,12 +24,18 @@
     <ClCompile Include="hud.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sprite.h">
       <Filter>Arquivos de Origem</Filter>
     </ClInclude>
     <ClInclude Include="hud.h">
+      <Filter>Arquivos de Origem</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
       <Filter>Arquivos de Origem</Filter>
     </ClInclude>
   </ItemGroup>

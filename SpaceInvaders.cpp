@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "sprite.h"
 #include "hud.h"
+#include "player.h"
 
 using namespace sf;
 
@@ -51,6 +52,9 @@ int main()
         {
             // Delta time timing each frame
             Time dt = clock.restart();
+
+            // Function to move the player left & right
+            move(&player, 0.5f);
         }
         
         // Clear each frame 
