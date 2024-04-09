@@ -9,4 +9,6 @@ Sprite createBackground(Texture *texture);
 
 Sprite createPlayer(Texture* texture);
 
+Sprite createBullet(Texture* texture);
+
 #endif

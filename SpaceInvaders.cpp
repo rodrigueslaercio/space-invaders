@@ -30,6 +30,11 @@ int main()
     // Vector containing the enemies
     std::vector<Sprite> enemies = createEnemies(&textureEnemy);
 
+    // Texture and sprite for the bullet
+    Texture textureBullet;
+    textureBullet.loadFromFile("graphics/bullet.png");
+    Sprite bullet = createBullet(&textureBullet);
+
     // Boolean to check if the game is paused
     bool paused = true;
 
@@ -80,11 +85,15 @@ int main()
 
         //* Draw in the screen *
         window.draw(createBackground(&textureBackground));
+
         window.draw(player);
+
         if (paused) window.draw(message);
 
         for (auto& enemy : enemies)
             window.draw(enemy);
+        
+        window.draw(bullet);
 
         window.display();
     }

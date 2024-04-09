@@ -19,3 +19,12 @@ Sprite createPlayer(Texture* texture)
 
     return spritePlayer;
 }
+
+Sprite createBullet(Texture* texture)
+{
+    Sprite bullet; 
+    bullet.setTexture(*texture);
+    bullet.setPosition(1920, 1020);
+
+    return bullet;
+}
