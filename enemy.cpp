@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "enemy.h"
 
 using namespace sf;
 
@@ -39,4 +40,21 @@ void moveEnemies(std::vector<Sprite>* enemies, Time dt)
 		enemies->at(i).setPosition(enemies->at(i).getPosition().x,
 			enemies->at(i).getPosition().y + (enemySpeed * dt.asSeconds()));
 	}
+}
+
+bool areEnemiesOffScreen(std::vector<Sprite>* enemies)
+{
+	int size = enemies->size();
+	int count = 0;
+
+	for (int j = 0; j < enemies->size(); j++)
+	{
+		if (enemies->at(j).getPosition().y > 1920) 
+			count++;
+	}
+
+	if (count == size) 
+		return true;
+		
+	return false;
 }

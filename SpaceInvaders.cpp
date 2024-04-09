@@ -67,6 +67,12 @@ int main()
 
             // Function to move the enemies ships
             moveEnemies(&enemies, dt);
+
+            // Recreate the enemies when they are off the screen
+            if (areEnemiesOffScreen(&enemies))
+            {
+                enemies = createEnemies(&textureEnemy);
+            }
         }
         
         // Clear each frame 

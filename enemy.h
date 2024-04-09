@@ -10,5 +10,7 @@ std::vector<Sprite> createEnemies(Texture* texture);
 
 void moveEnemies(std::vector<Sprite>* enemies, Time dt);
 
+bool areEnemiesOffScreen(std::vector<Sprite>* enemies);
+
 
 #endif
