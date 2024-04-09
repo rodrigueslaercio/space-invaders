@@ -3,6 +3,7 @@
 #include "sprite.h"
 #include "hud.h"
 #include "player.h"
+#include "enemy.h"
 
 using namespace sf;
 
@@ -20,6 +21,14 @@ int main()
     Texture texturePlayer;
     texturePlayer.loadFromFile("graphics/ship.png");
     Sprite player = createPlayer(&texturePlayer);
+
+
+    // Texture for enemies
+    Texture textureEnemy;
+    textureEnemy.loadFromFile("graphics/enemy_ship.png");
+
+    // Vector containing the enemies
+    std::vector<Sprite> enemies = createEnemies(&textureEnemy);
 
     // Boolean to check if the game is paused
     bool paused = true;
@@ -55,6 +64,9 @@ int main()
 
             // Function to move the player left & right
             move(&player, 0.5f);
+
+            // Function to move the enemies ships
+            moveEnemies(&enemies, dt);
         }
         
         // Clear each frame 
@@ -64,6 +76,9 @@ int main()
         window.draw(createBackground(&textureBackground));
         window.draw(player);
         if (paused) window.draw(message);
+
+        for (auto& enemy : enemies)
+            window.draw(enemy);
 
         window.display();
     }
