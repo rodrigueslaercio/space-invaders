@@ -46,9 +46,25 @@ int main()
 
     // Call the function to create the message
     Text message = startMessage(&font);
+
+    // Ammo
+    std::vector<Bullet> ammo;
         
+    bool keyWasPressed;
+
     while (window.isOpen())
     {
+        Event event;
+
+        while (window.pollEvent(event))
+        {
+            // Check if the X key was released
+            if (event.type == Event::KeyReleased && !paused)
+            {
+                keyWasPressed = false;
+            }
+        }
+
         // Handle player input
         if (Keyboard::isKeyPressed(Keyboard::Escape))
         {
@@ -78,6 +94,9 @@ int main()
             {
                 enemies = createEnemies(&textureEnemy);
             }
+           
+            // Shoot the bullet
+            shootBullet(&player, ammo, &textureBullet, 300, dt, keyWasPressed);
         }
         
         // Clear each frame 
@@ -92,8 +111,14 @@ int main()
 
         for (auto& enemy : enemies)
             window.draw(enemy);
-        
-        window.draw(bullet);
+
+        for (auto& bullet : ammo)
+        {
+            if (bullet.active)
+            {
+                window.draw(bullet.sprite);
+            }
+        }
 
         window.display();
     }

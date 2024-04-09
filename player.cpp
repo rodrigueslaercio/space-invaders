@@ -1,5 +1,7 @@
 #include "player.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <set>;
 
 using namespace sf;
 
@@ -34,3 +36,33 @@ bool isOutOfBoundsRight(Sprite player)
 
 	return false;
 }
+
+void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, float speed, Time dt, bool& keyWasPressed)
+{
+    float playerX = player->getPosition().x;
+    float playerY = player->getPosition().y;
+
+    bool keyPressedNow = Keyboard::isKeyPressed(Keyboard::X);
+
+    // Check if the key is pressed now
+    if (keyPressedNow && !keyWasPressed)
+    {
+        Bullet newBullet;
+        newBullet.sprite.setTexture(*texture);
+        newBullet.sprite.setPosition(playerX, playerY - player->getGlobalBounds().height * 1.5);
+        newBullet.active = true;
+        ammo.push_back(newBullet);
+    }
+
+    keyWasPressed = keyPressedNow;
+
+    for (auto& bullet : ammo)
+    {
+        if (bullet.active)
+        {
+            bullet.sprite.setPosition(bullet.sprite.getPosition().x, bullet.sprite.getPosition().y - (speed * dt.asSeconds()));
+        }
+    }
+}
+
+
