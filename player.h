@@ -20,4 +20,6 @@ struct Bullet {
 
 void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, float speed, Time dt, bool& keyWasPressed);
 
+void setEnemies(std::vector<Sprite>* enemies);
+
 #endif

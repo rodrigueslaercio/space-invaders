@@ -89,6 +89,9 @@ int main()
             // Function to move the enemies ships
             moveEnemies(&enemies, dt);
 
+            // Function that sets the enemy vector in a var aux for collision detection
+            setEnemies(&enemies);
+
             // Recreate the enemies when they are off the screen
             if (areEnemiesOffScreen(&enemies))
             {
