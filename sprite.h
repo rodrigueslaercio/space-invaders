@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SPRITES_HEADER
 #define SPRITES_HEADER
 

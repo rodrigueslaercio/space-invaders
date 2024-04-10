@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HUD_HEADER
 #define HUD_HEADER
 

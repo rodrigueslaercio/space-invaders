@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ENEMY_HEADER
 #define ENEMY_HEADER
 
