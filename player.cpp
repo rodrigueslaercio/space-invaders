@@ -8,6 +8,7 @@ using namespace sf;
 std::vector<Sprite>* enemies_aux;
 float enemyCurrentX = 0.0f;
 float enemyCurrentY = 0.0f;
+int score = 0;
 
 void move(Sprite* player, float speed)
 {
@@ -87,6 +88,8 @@ void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, fl
                     bullet.active = false;
                     // Set the enemy hit off the screen
                     enemies_aux->at(i).setPosition(enemies_aux->at(i).getPosition().x, 2000);
+
+                    score++;
                 }
 
                 if (bullet.sprite.getPosition().y <= 0)
@@ -101,4 +104,9 @@ void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, fl
 void setEnemies(std::vector<Sprite>* enemies)
 {
     enemies_aux = enemies;
+}
+
+int getScore()
+{
+    return score;
 }

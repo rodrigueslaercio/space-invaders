@@ -10,5 +10,9 @@ Text startMessage(Font* font);
 
 void centerStartMessage(Text* message);
 
+Text scoreMessage(Font* font);
+
+void positionScoreMessage(Text* message);
+
 #endif
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <SFML/Graphics.hpp>
 #include "sprite.h"
 #include "hud.h"
@@ -55,6 +56,7 @@ int main()
 
     // Call the function to create the message
     Text message = startMessage(&font);
+    Text scoreText = scoreMessage(&font);
 
     // Ammo
     std::vector<Bullet> ammo;
@@ -104,6 +106,11 @@ int main()
             // Function that sets the enemy vector in a var aux for collision detection
             setEnemies(&enemies);
 
+            // Change the score text
+            std::stringstream ss;
+            ss << "Score = " << getScore();
+            scoreText.setString(ss.str());
+
             // Recreate the enemies when they are off the screen
             if (areEnemiesOffScreen(&enemies))
             {
@@ -115,16 +122,21 @@ int main()
 
 
             // Animation explosion sheet logic
-            for (auto& explosion : explosions) {
-                if (explosion.active) {
-                    if (explosion.animationClock.getElapsedTime().asSeconds() > 0.06f) {
+            for (auto& explosion : explosions) 
+            {
+                if (explosion.active) 
+                {
+                    if (explosion.animationClock.getElapsedTime().asSeconds() > 0.06f) 
+                    {
                         // Advances each frame of the sheet
                         rectExplosion.left += frameWidth;
-                        if (rectExplosion.left >= frameWidth * numFrames) {
+                        if (rectExplosion.left >= frameWidth * numFrames) 
+                        {
                             rectExplosion.left = 0;
                             explosion.active = false;
                         }
                         explosion.sprite.setTextureRect(rectExplosion);
+
                     }
                 }
                 else
@@ -132,6 +144,7 @@ int main()
                     explosion.animationClock.restart();
                 }
             }
+
         }
         
         // Clear each frame 
@@ -143,6 +156,7 @@ int main()
         window.draw(player);
 
         if (paused) window.draw(message);
+        if (!paused) window.draw(scoreText);
 
         for (auto& enemy : enemies)
             window.draw(enemy);

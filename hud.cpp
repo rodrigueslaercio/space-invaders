@@ -25,3 +25,24 @@ void centerStartMessage(Text* message)
 		startMessageRect.top + startMessageRect.height / 2.0f);
 	message->setPosition(1920 / 2.0f, 1080 / 2.0f);
 }
+
+Text scoreMessage(Font* font)
+{
+	Text message;
+	message.setFont(*font);
+	message.setString("Score = 0");
+	message.setFillColor(Color::Green);
+	message.setCharacterSize(25);
+
+	positionScoreMessage(&message);
+
+	return message;
+}
+
+
+void positionScoreMessage(Text* message)
+{
+	// Center the message
+	FloatRect startMessageRect = message->getGlobalBounds();
+	message->setPosition(1750, 60);
+}

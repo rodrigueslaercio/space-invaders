@@ -29,4 +29,7 @@ void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, fl
 
 void setEnemies(std::vector<Sprite>* enemies);
 
+int getScore();
+
+
 #endif
