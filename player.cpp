@@ -88,6 +88,11 @@ void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, fl
                     // Set the enemy hit off the screen
                     enemies_aux->at(i).setPosition(enemies_aux->at(i).getPosition().x, 2000);
                 }
+
+                if (bullet.sprite.getPosition().y <= 0)
+                {
+                    bullet.active = false;
+                }
             }
         }
     }
