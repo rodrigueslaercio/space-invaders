@@ -35,6 +35,15 @@ int main()
     textureBullet.loadFromFile("graphics/bullet.png");
     Sprite bullet = createBullet(&textureBullet);
 
+    // Texture and Rect of the explosion
+    Texture textureExplosion;
+    textureExplosion.loadFromFile("graphics/explosion.png");
+    IntRect rectExplosion(0, 0, 64, 64);
+
+    // Num of frames and its width of each sprite in the sheet
+    const int frameWidth = 64;
+    const int numFrames = 16;
+
     // Boolean to check if the game is paused
     bool paused = true;
 
@@ -49,6 +58,9 @@ int main()
 
     // Ammo
     std::vector<Bullet> ammo;
+
+    // Explosions
+    std::vector<Explosion> explosions;
         
     bool keyWasPressed;
 
@@ -99,7 +111,27 @@ int main()
             }
            
             // Shoot the bullet
-            shootBullet(&player, ammo, &textureBullet, 300, dt, keyWasPressed);
+            shootBullet(&player, ammo, &textureBullet, 300, dt, keyWasPressed, &textureExplosion, &rectExplosion, &explosions);
+
+
+            // Animation explosion sheet logic
+            for (auto& explosion : explosions) {
+                if (explosion.active) {
+                    if (explosion.animationClock.getElapsedTime().asSeconds() > 0.06f) {
+                        // Advances each frame of the sheet
+                        rectExplosion.left += frameWidth;
+                        if (rectExplosion.left >= frameWidth * numFrames) {
+                            rectExplosion.left = 0;
+                            explosion.active = false;
+                        }
+                        explosion.sprite.setTextureRect(rectExplosion);
+                    }
+                }
+                else
+                {
+                    explosion.animationClock.restart();
+                }
+            }
         }
         
         // Clear each frame 
@@ -120,6 +152,14 @@ int main()
             if (bullet.active)
             {
                 window.draw(bullet.sprite);
+            }
+        }
+
+        for (auto& explosion : explosions)
+        {
+            if (explosion.active)
+            {
+                window.draw(explosion.sprite);
             }
         }
 

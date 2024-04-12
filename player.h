@@ -18,7 +18,14 @@ struct Bullet {
 	bool active;
 };
 
-void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, float speed, Time dt, bool& keyWasPressed);
+struct Explosion {
+	Sprite sprite;
+	bool active;
+	Clock animationClock;
+};
+
+void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, float speed, Time dt, bool& keyWasPressed,
+	Texture* textureExplosion, IntRect* rectExplosion, std::vector<Explosion>* explosions);
 
 void setEnemies(std::vector<Sprite>* enemies);
 
