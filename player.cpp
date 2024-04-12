@@ -69,6 +69,7 @@ void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, fl
             {
                 if (bullet.sprite.getGlobalBounds().intersects(enemies_aux->at(i).getGlobalBounds()))
                 {
+                    bullet.active = false;
                     // Set the enemy hit off the screen
                     enemies_aux->at(i).setPosition(enemies_aux->at(i).getPosition().x, 2000);
                 }
