@@ -31,5 +31,8 @@ void setEnemies(std::vector<Sprite>* enemies);
 
 int getScore();
 
+void setScore(int value);
+
+bool gameOver(Sprite* player);
 
 #endif

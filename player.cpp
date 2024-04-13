@@ -92,6 +92,7 @@ void shootBullet(Sprite* player, std::vector<Bullet>& ammo, Texture* texture, fl
                     score++;
                 }
 
+                // Turn off the bullet drawing if it goes of the Y axis
                 if (bullet.sprite.getPosition().y <= 0)
                 {
                     bullet.active = false;
@@ -109,4 +110,23 @@ void setEnemies(std::vector<Sprite>* enemies)
 int getScore()
 {
     return score;
+}
+
+void setScore(int value)
+{
+    score = value;
+}
+
+bool gameOver(Sprite* player)
+{
+    for (int i = 0; i < enemies_aux->size(); i++)
+    {
+        // Check for collision between the player and the enemies
+        if (player->getGlobalBounds().intersects(enemies_aux->at(i).getGlobalBounds()))
+        {
+            return true;
+        }
+    }
+
+    return false;
 }

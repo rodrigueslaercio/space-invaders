@@ -88,6 +88,8 @@ int main()
         if (Keyboard::isKeyPressed(Keyboard::Enter))
         {
             paused = false;
+            enemies = createEnemies(&textureEnemy);
+            setScore(0);
         }
 
 
@@ -126,7 +128,7 @@ int main()
             {
                 if (explosion.active) 
                 {
-                    if (explosion.animationClock.getElapsedTime().asSeconds() > 0.06f) 
+                    if (explosion.animationClock.getElapsedTime().asSeconds() > 0.10f) 
                     {
                         // Advances each frame of the sheet
                         rectExplosion.left += frameWidth;
@@ -143,6 +145,18 @@ int main()
                 {
                     explosion.animationClock.restart();
                 }
+            }
+
+            // Game Over
+            if (gameOver(&player))
+            {
+                paused = true;
+                message.setString("GAME OVER! Press ENTER to Start Again");
+                
+                FloatRect messageRect = message.getLocalBounds();
+                message.setOrigin(messageRect.left + messageRect.width / 2.0f,
+                    messageRect.top + messageRect.height / 2.0f);
+                message.setPosition(1920 / 2.0f, 1080 / 2.0f);
             }
 
         }
